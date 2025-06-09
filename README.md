@@ -16,7 +16,7 @@ pnpm i
 
 ### Configuration
 
-Create a copy of the provided `.env.example` file and name it `.env`. Fill in the required OpenAI API Key in the newly created `.env` file, and Better Auth variables if you're going to use authentication:
+Create a copy of the provided `env.example` file and name it `.env`. Fill in the required OpenAI API Key in the newly created `.env` file, and Better Auth variables if you're going to use authentication:
 
 `cp env.example .env`
 
