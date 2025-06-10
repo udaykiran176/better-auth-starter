@@ -10,6 +10,7 @@ export default function Home() {
         alt="Better Auth"
         width={100}
         height={100}
+        className="rounded-lg dark:invert"
       />
 
       <h1 className="text-4xl font-bold">Better Auth Starter</h1>
