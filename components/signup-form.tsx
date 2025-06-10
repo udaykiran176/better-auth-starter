@@ -161,12 +161,12 @@ export function SignupForm({
                           </FormItem>
                         )}
                       />
-                      <a
+                      <Link
                         href="#"
                         className="ml-auto text-sm underline-offset-4 hover:underline"
                       >
                         Forgot your password?
-                      </a>
+                      </Link>
                     </div>
                   </div>
                   <Button type="submit" className="w-full" disabled={isLoading}>
@@ -189,8 +189,9 @@ export function SignupForm({
         </CardContent>
       </Card>
       <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-        By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
-        and <a href="#">Privacy Policy</a>.
+        By clicking continue, you agree to our{" "}
+        <Link href="#">Terms of Service</Link> and{" "}
+        <Link href="#">Privacy Policy</Link>.
       </div>
     </div>
   );
