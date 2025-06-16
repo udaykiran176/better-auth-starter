@@ -1,8 +1,7 @@
 import Link from "next/link";
 
-import { GalleryVerticalEnd } from "lucide-react";
-
 import { LoginForm } from "@/components/login-form";
+import Image from "next/image";
 
 export default function LoginPage() {
   return (
@@ -13,7 +12,13 @@ export default function LoginPage() {
           className="flex items-center gap-2 self-center font-medium"
         >
           <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
-            <GalleryVerticalEnd className="size-4" />
+            <Image
+              width={50}
+              height={50}
+              src={"/better-auth-starter.png"}
+              alt="Better Auth Starter Logo"
+              priority
+            />
           </div>
           Acme Inc.
         </Link>
