@@ -20,7 +20,7 @@ export default function SignupPage() {
               priority
             />
           </div>
-          Acme Inc.
+          Better Auth Starter
         </Link>
         <SignupForm />
       </div>

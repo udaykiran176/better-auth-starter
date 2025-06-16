@@ -20,7 +20,7 @@ export default function LoginPage() {
               priority
             />
           </div>
-          Acme Inc.
+          Better Auth Starter
         </Link>
         <LoginForm />
       </div>
