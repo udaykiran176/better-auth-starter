@@ -3,9 +3,11 @@ import { schema } from "@/db/schema";
 
 import ForgotPasswordEmail from "@/components/emails/reset-password";
 import VerifyEmail from "@/components/emails/verify-email";
+import { getActiveOrganization } from "@/server/organizations";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { nextCookies } from "better-auth/next-js";
+import { organization } from "better-auth/plugins";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY as string);
@@ -40,9 +42,24 @@ export const auth = betterAuth({
         },
         requireEmailVerification: true
     },
+    databaseHooks: {
+        session: {
+            create: {
+                before: async (session) => {
+                    const organization = await getActiveOrganization(session.userId)
+                    return {
+                        data: {
+                            ...session,
+                            activeOrganizationId: organization?.id
+                        }
+                    }
+                }
+            }
+        }
+    },
     database: drizzleAdapter(db, {
         provider: "pg",
         schema,
     }),
-    plugins: [nextCookies()]
+    plugins: [organization(), nextCookies()]
 });
