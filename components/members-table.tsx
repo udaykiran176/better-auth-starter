@@ -8,7 +8,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Member } from "@/db/schema";
-import { Button } from "./ui/button";
 import MembersTableAction from "./members-table-action";
 
 interface MembersTableProps {
@@ -18,7 +17,7 @@ interface MembersTableProps {
 export default function MembersTable({ members }: MembersTableProps) {
   return (
     <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
+      <TableCaption>A list of organization members.</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">Username</TableHead>
