@@ -1,4 +1,5 @@
-import { boolean, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
+import { boolean, pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
     id: text('id').primaryKey(),
@@ -56,15 +57,40 @@ export const organization = pgTable("organization", {
     metadata: text('metadata')
 });
 
+export const organizationRelations = relations(organization, ({ many }) => ({
+    members: many(member)
+}));
+
 export type Organization = typeof organization.$inferSelect;
+
+export const role = pgEnum("role", ["member", "admin", "owner"]);
+
+export type Role = (typeof role.enumValues)[number];
 
 export const member = pgTable("member", {
     id: text('id').primaryKey(),
     organizationId: text('organization_id').notNull().references(() => organization.id, { onDelete: 'cascade' }),
     userId: text('user_id').notNull().references(() => user.id, { onDelete: 'cascade' }),
-    role: text('role').default("member").notNull(),
+    role: role('role').default("member").notNull(),
     createdAt: timestamp('created_at').notNull()
 });
+
+export const memberRelations = relations(member, ({ one }) => ({
+    organization: one(organization, {
+        fields: [member.organizationId],
+        references: [organization.id]
+    }),
+    user: one(user, {
+        fields: [member.userId],
+        references: [user.id]
+    })
+}));
+
+export type Member = typeof member.$inferSelect & {
+    user: typeof user.$inferSelect;
+};
+
+export type User = typeof user.$inferSelect;
 
 export const invitation = pgTable("invitation", {
     id: text('id').primaryKey(),
@@ -76,4 +102,4 @@ export const invitation = pgTable("invitation", {
     inviterId: text('inviter_id').notNull().references(() => user.id, { onDelete: 'cascade' })
 });
 
-export const schema = { user, session, account, verification, organization, member, invitation };
+export const schema = { user, session, account, verification, organization, member, invitation, organizationRelations, memberRelations };

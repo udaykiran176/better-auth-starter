@@ -9,6 +9,7 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { nextCookies } from "better-auth/next-js";
 import { organization } from "better-auth/plugins";
 import { Resend } from "resend";
+import { ac, admin, member, owner } from "./auth/permissions";
 
 const resend = new Resend(process.env.RESEND_API_KEY as string);
 
@@ -61,5 +62,12 @@ export const auth = betterAuth({
         provider: "pg",
         schema,
     }),
-    plugins: [organization(), nextCookies()]
+    plugins: [organization({
+        ac,
+        roles: {
+            owner,
+            admin,
+            member
+        }
+    }), nextCookies()]
 });
