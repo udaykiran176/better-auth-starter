@@ -1,0 +1,42 @@
+export const levels = [
+  { 
+    id: 1,
+    title: "Build your own circuit",
+    desc: "Learn what robots are, where we use them, and get hands-on with basic parts like sensors, motors, and batteries.",
+    level: 1,
+    color: "bg-blue-400",
+    imageSrc: "/level-buttons/level-1.svg",
+  },
+  {
+    id: 2,
+    title: "Introduction to sensor",
+    desc: "Learn what robots are, where we use them, and get hands-on with basic parts like sensors, motors, and batteries.",
+    level: 2,
+    color: "bg-purple-400",
+    imageSrc: "/level-buttons/level-2.svg",
+  },
+  { 
+    id: 3,
+    title: "wire & wireless bot",
+    desc: "Learn what robots are, where we use them, and get hands-on with basic parts like sensors, motors, and batteries.",
+    level: 3,
+    color: "bg-pink-400",
+    imageSrc: "/level-buttons/level-3.svg",
+  },
+  { 
+    id: 4,
+    title: "step into coding",
+    desc: "Learn what robots are, where we use them, and get hands-on with basic parts like sensors, motors, and batteries.",
+    level: 4,
+    color: "bg-green-400",
+    imageSrc: "/level-buttons/level-4.svg",
+  },
+  { 
+    id: 5,
+    title: "build a Robot",
+    desc: "Learn what robots are, where we use them, and get hands-on with basic parts like sensors, motors, and batteries.",
+    level: 5,
+    color: "bg-yellow-400",
+    imageSrc: "/level-buttons/level-5.svg",
+  },
+];

@@ -1,5 +1,5 @@
 import { relations } from "drizzle-orm";
-import { boolean, pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { boolean, pgTable, text, timestamp, integer } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
     id: text('id').primaryKey(),
@@ -8,7 +8,7 @@ export const user = pgTable("user", {
     emailVerified: boolean('email_verified').$defaultFn(() => false).notNull(),
     image: text('image'),
     createdAt: timestamp('created_at').$defaultFn(() => /* @__PURE__ */ new Date()).notNull(),
-    updatedAt: timestamp('updated_at').$defaultFn(() => /* @__PURE__ */ new Date()).notNull()
+    updatedAt: timestamp('updated_at').$defaultFn(() => /* @__PURE__ */ new Date()).notNull(),
 });
 
 export const session = pgTable("session", {
@@ -20,7 +20,6 @@ export const session = pgTable("session", {
     ipAddress: text('ip_address'),
     userAgent: text('user_agent'),
     userId: text('user_id').notNull().references(() => user.id, { onDelete: 'cascade' }),
-    activeOrganizationId: text('active_organization_id')
 });
 
 export const account = pgTable("account", {
@@ -48,58 +47,24 @@ export const verification = pgTable("verification", {
     updatedAt: timestamp('updated_at').$defaultFn(() => /* @__PURE__ */ new Date())
 });
 
-export const organization = pgTable("organization", {
+
+//child profile
+export const childProfile = pgTable("child_profile", {
     id: text('id').primaryKey(),
-    name: text('name').notNull(),
-    slug: text('slug').unique(),
-    logo: text('logo'),
-    createdAt: timestamp('created_at').notNull(),
-    metadata: text('metadata')
-});
-
-export const organizationRelations = relations(organization, ({ many }) => ({
-    members: many(member)
-}));
-
-export type Organization = typeof organization.$inferSelect;
-
-export const role = pgEnum("role", ["member", "admin", "owner"]);
-
-export type Role = (typeof role.enumValues)[number];
-
-export const member = pgTable("member", {
-    id: text('id').primaryKey(),
-    organizationId: text('organization_id').notNull().references(() => organization.id, { onDelete: 'cascade' }),
     userId: text('user_id').notNull().references(() => user.id, { onDelete: 'cascade' }),
-    role: role('role').default("member").notNull(),
-    createdAt: timestamp('created_at').notNull()
+    name: text('name').notNull(),
+    dob: timestamp('dob').notNull(),
+    gender: text('gender').notNull(),
+    class: integer('class').notNull(),
+    createdAt: timestamp('created_at').$defaultFn(() => /* @__PURE__ */ new Date()),
+    updatedAt: timestamp('updated_at').$defaultFn(() => /* @__PURE__ */ new Date())
 });
 
-export const memberRelations = relations(member, ({ one }) => ({
-    organization: one(organization, {
-        fields: [member.organizationId],
-        references: [organization.id]
-    }),
-    user: one(user, {
-        fields: [member.userId],
-        references: [user.id]
-    })
+//add the relations between the user and children tables
+export const userRelations = relations(user, ({ one, many }) => ({
+    accounts: many(account),
+    sessions: many(session),
+    childProfile: one(childProfile),
 }));
 
-export type Member = typeof member.$inferSelect & {
-    user: typeof user.$inferSelect;
-};
-
-export type User = typeof user.$inferSelect;
-
-export const invitation = pgTable("invitation", {
-    id: text('id').primaryKey(),
-    organizationId: text('organization_id').notNull().references(() => organization.id, { onDelete: 'cascade' }),
-    email: text('email').notNull(),
-    role: text('role'),
-    status: text('status').default("pending").notNull(),
-    expiresAt: timestamp('expires_at').notNull(),
-    inviterId: text('inviter_id').notNull().references(() => user.id, { onDelete: 'cascade' })
-});
-
-export const schema = { user, session, account, verification, organization, member, invitation, organizationRelations, memberRelations };
+export const schema = { user, session, account, verification, childProfile };

@@ -1,0 +1,15 @@
+# Auth
+BETTER_AUTH_SECRET=HGRWjqWkxKnpuPahWRwI7W3O6L6HyVOn
+BETTER_AUTH_URL=http://localhost:3000
+
+# DB
+DATABASE_URL=postgresql://neondb_owner:npg_5frQwCvengu7@ep-little-frost-a1xlqjf3-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+
+# Google
+GOOGLE_CLIENT_ID=1011525204241-238f89hfisk31k0k9rvus6abc8vtuqsr.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=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
+
+# Resend
+RESEND_API_KEY="your-resend-api-key"
+EMAIL_SENDER_NAME="warrior"
+EMAIL_SENDER_ADDRESS="orcdev.com"

@@ -1,32 +1,37 @@
 "use server";
 
 import { db } from "@/db/drizzle";
-import { member, user } from "@/db/schema";
+import { user } from "@/db/schema";
 import { auth } from "@/lib/auth";
-import { eq, inArray, not } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 export const getCurrentUser = async () => {
-    const session = await auth.api.getSession({
-        headers: await headers(),
-    });
+    try {
+        const session = await auth.api.getSession({
+            headers: await headers(),
+        });
 
-    if (!session) {
-        redirect("/login");
-    }
+        if (!session) {
+            return { currentUser: null };
+        }
 
-    const currentUser = await db.query.user.findFirst({
-        where: eq(user.id, session.user.id),
-    });
+        const currentUser = await db.query.user.findFirst({
+            where: eq(user.id, session.user.id),
+        });
 
-    if (!currentUser) {
-        redirect("/login");
-    }
+        if (!currentUser) {
+            return { currentUser: null };
+        }
 
-    return {
-        ...session,
-        currentUser
+        return {
+            ...session,
+            currentUser
+        };
+    } catch (error) {
+        console.error('Error in getCurrentUser:', error);
+        return { currentUser: null };
     }
 }
 
@@ -77,15 +82,9 @@ export const signUp = async (email: string, password: string, username: string) 
     }
 }
 
-export const getUsers = async (organizationId: string) => {
+export const getUsers = async () => {
     try {
-        const members = await db.query.member.findMany({
-            where: eq(member.organizationId, organizationId),
-        });
-
-        const users = await db.query.user.findMany({
-            where: not(inArray(user.id, members.map((member) => member.userId))),
-        });
+        const users = await db.query.user.findMany();
 
         return users;
     } catch (error) {
