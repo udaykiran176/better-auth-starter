@@ -11,5 +11,5 @@ GOOGLE_CLIENT_SECRET=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
 
 # Resend
 RESEND_API_KEY="your-resend-api-key"
-EMAIL_SENDER_NAME="warrior"
-EMAIL_SENDER_ADDRESS="orcdev.com"
+EMAIL_SENDER_NAME="atribot"
+EMAIL_SENDER_ADDRESS="atribot.com"
