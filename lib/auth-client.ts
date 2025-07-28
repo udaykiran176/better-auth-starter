@@ -1,10 +1,13 @@
 import { organizationClient } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
 
-// Ensure the URL doesn't end with a trailing slash
 const getBaseUrl = () => {
-  const url = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-  return url.endsWith('/') ? url.slice(0, -1) : url;
+  // In the browser, use the current origin
+  if (typeof window !== 'undefined') {
+    return window.location.origin;
+  }
+  // For server-side, use the environment variable
+  return process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 };
 
 export const authClient = createAuthClient({
